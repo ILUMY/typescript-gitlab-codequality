@@ -6,8 +6,3 @@ codeclimate-types@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/codeclimate-types/-/codeclimate-types-0.3.1.tgz#a50bd181506b5ce5bd3940eca07c1c53c770416b"
   integrity sha512-JCAaPG3tAYlVQQE9NP5kgsXBxPfSmflUI7manmbllUd9TN+1p/SXZkOsMAlPXCp3gcqNVL0itxMjcgKF0nBmJg==
-
-yaml@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.2.tgz#f522db4313c671a0ca963a75670f1c12ea909144"
-  integrity sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==

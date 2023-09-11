@@ -8,16 +8,13 @@ const readline = require('readline');
 const { dirname, join, relative, resolve } = require('node:path')
 const { existsSync, lstatSync, mkdirSync, readFileSync, writeFileSync } = require('node:fs')
 
-const yaml = require('yaml')
-
-
 const {
     CI_COMMIT_SHORT_SHA,
     CI_CONFIG_PATH = '.gitlab-ci.yml',
     CI_JOB_NAME = 'eslint',
     CI_PROJECT_DIR = process.cwd(),
     CI_PROJECT_URL,
-    ESLINT_CODE_QUALITY_REPORT,
+    TYPESCRIPT_CODE_QUALITY_REPORT,
     GITLAB_CI
 } = process.env
 
@@ -135,12 +132,10 @@ function newParser() {
  * @returns {string}
  */
 function toJSON(issues) {
-    // if (CI_JOB_NAME || ESLINT_CODE_QUALITY_REPORT) {
-    const outputPath = ESLINT_CODE_QUALITY_REPORT || getOutputPath()
+    const outputPath = TYPESCRIPT_CODE_QUALITY_REPORT || 'ts-codequality.json'
     const dir = dirname(outputPath)
     mkdirSync(dir, { recursive: true })
     writeFileSync(outputPath, JSON.stringify(issues, null, 2))
-    //   }
 }
 
 /**
@@ -169,33 +164,6 @@ function createFingerprint(filePath, message, hashes) {
 
     hashes.add(hash)
     return hash
-}
-/**
- * @returns {string} The output path of the code quality artifact.
- */
-function getOutputPath() {
-    const configPath = join(CI_PROJECT_DIR, CI_CONFIG_PATH)
-    // GitlabCI allows a custom configuration path which can be a URL or a path relative to another
-    // project. In these cases CI_CONFIG_PATH is empty and we'll have to require the user provide
-    // ESLINT_CODE_QUALITY_REPORT.
-    if (!existsSync(configPath) || !lstatSync(configPath).isFile()) {
-        throw new Error(
-            'Could not resolve .gitlab-ci.yml to automatically detect report artifact path.' +
-            ' Please manually provide a path via the ESLINT_CODE_QUALITY_REPORT variable.'
-        )
-    }
-    const doc = yaml.parseDocument(readFileSync(configPath, 'utf8'), {
-        version: '1.1',
-        customTags: [reference]
-    })
-    const path = [CI_JOB_NAME, 'artifacts', 'reports', 'codequality']
-    const location = doc.getIn(path)
-    if (typeof location !== 'string' || !location) {
-        throw new TypeError(
-            `Expected ${path.join('.')} to be one exact path, got: ${JSON.stringify(location)}`
-        )
-    }
-    return resolve(CI_PROJECT_DIR, location)
 }
 
 

@@ -1,6 +1,6 @@
 {
   "name": "typescript-gitlab-codequality",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Produce Gitlab codequality output from typescript compiler messages",
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
   "homepage": "https://github.com/ILUMY/typescript-gitlab-codequality#readme",
   "dependencies": {},
   "devDependencies": {
-    "codeclimate-types": "^0.3.1",
-    "yaml": "^2.3.2"
+    "codeclimate-types": "^0.3.1"
   }
 }

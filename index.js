@@ -132,7 +132,12 @@ function newParser() {
  * @returns {string}
  */
 function toJSON(issues) {
-    const outputPath = TYPESCRIPT_CODE_QUALITY_REPORT || 'ts-codequality.json'
+    const outputPath = TYPESCRIPT_CODE_QUALITY_REPORT || 'gl-codequality.json'
+    if(existsSync(outputPath)) {
+        const inputRaw = readFileSync(outputPath, 'utf8');
+        const existingIssues = JSON.parse(inputRaw);
+        issues = [...existingIssues, ...issues];
+    }
     const dir = dirname(outputPath)
     mkdirSync(dir, { recursive: true })
     writeFileSync(outputPath, JSON.stringify(issues, null, 2))

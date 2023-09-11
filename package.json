@@ -1,0 +1,30 @@
+{
+  "name": "typescript-gitlab-codequality",
+  "version": "1.2.0",
+  "description": "Produce Gitlab codequality output from typescript compiler messages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ILUMY/typescript-gitlab-codequality.git"
+  },
+  "bin": "./index.js",
+  "scripts": {
+    "test": "./test.sh"
+  },
+  "keywords": [
+    "typescript",
+    "xunit",
+    "junit",
+    "xml"
+  ],
+  "author": "David Clarisse <david@plek.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ILUMY/typescript-gitlab-codequality/issues"
+  },
+  "homepage": "https://github.com/ILUMY/typescript-gitlab-codequality#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "codeclimate-types": "^0.3.1",
+    "yaml": "^2.3.2"
+  }
+}
